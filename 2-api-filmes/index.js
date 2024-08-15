@@ -26,6 +26,9 @@ api.get('/status', (req, res) => res.send('<h3>API Online!</h3>'));
 
 
 const filmsController = require('./controller/film.js');
+const authentic = require('./middlewares/authentic.js');
+api.post('/login', authentic.login);
+
 api.get('/filme', filmsController.listFilms);
 api.post('/filme', filmsController.addFilm);
 api.put('/filme', filmsController.editFilm);

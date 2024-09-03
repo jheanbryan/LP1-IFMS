@@ -1,48 +1,42 @@
 require('dotenv').config();
+const secretKey = process.env.JWT_KEY || '';
 const jwt = require('jsonwebtoken');
+const User = require('../model/userSchema.js');
 const bcrypt = require('bcrypt');
-const User = require('../model/userSchema')
-const secretKey = process.env.JWT_SECRET_KEY || '';
 
-exports.login = async (req, res) => {
-    const { username, password } = req.body;
+exports.authentication = (req, res, next) => {
+  const token = req.headers['authorization'];
+  console.log(req.headers)
+  jwt.verify(token, secretKey, (erro, informacoesuser) => {
+    if (erro)
+      return res.status(401).send({ msg: 'Token inválido ou expirado!' });
 
-    try {
-        const user = await User.findOne({ username });
 
-        if (!user) {
-            return res.status(401).send({ msg: 'Invalid username or password!' });
-        }
+    next();
+  });
+}
 
-        const isMatch = await bcrypt.compare(password, user.password);
+exports.login = async (req, res, next) => {
+  /*const user = req.headers.user;
+  const password = req.headers.password;*/
 
-        if (!isMatch) {
-            return res.status(401).send({ msg: 'Invalid username or password!' });
-        }
+  const { user, password } = req.headers;
 
-        const userData = {
-            id: user._id,
-            username: user.username
-        };
+  const userBD = await User.findOne({ user: user });
+  if (!userBD)
+    return res.status(400).send({ msg: 'Usuário não existe' });
 
-        jwt.sign(userData, secretKey, { expiresIn: '1h' }, (err, token) => {
-            if (err) return res.status(500).send({ msg: 'Error generating JWT!' });
-            res.status(200).send({ token });
-        });
-    } catch (err) {
-        res.status(500).send({ msg: 'Internal server error', error: err.message });
-    }
-};
+  const passwordCorreta = await bcrypt.compare(password, userBD.password);
+  if (passwordCorreta) {
+    delete userBD._id;
+    delete userBD.password;
 
-exports.authenticate = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-
-    if (token == null) return res.status(401).send({ msg: 'Token not provided!' });
-
-    jwt.verify(token, secretKey, (err, userData) => {
-        if (err) return res.status(401).send({ msg: 'Invalid or expired token!' });
-        req.user = userData;
-        next();
+    jwt.sign(userBD.toJSON(), secretKey, { expiresIn: '1d' }, (erro, token) => {
+      if (erro)
+        return res.status(500).send({ msg: 'Erro ao gerar JWT!' });
+      res.status(200).send({ token: token });
     });
-};
+  } else {
+    res.status(401).send({ msg: 'Usuário ou password errados!' });
+  }
+}

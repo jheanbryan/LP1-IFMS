@@ -1,9 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const api = express();
+require('dotenv').config();
 
-const URL_DB = 'mongodb+srv://jhean:jheanbryan123@cluster0.5kg9w.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
-const API_PORT = 3000;
+
+
+const URL_DB = process.env.URL_BD;
+const API_PORT = process.env.API_PORT || 5000;
 
 // Coneccao e status
 mongoose.connect(URL_DB);
@@ -20,17 +23,19 @@ mongoose.connection.on('error', (erro) => {
 });
 
 
-api.listen(API_PORT, () => console.log('API Online!'));
+api.listen(API_PORT, () => console.log('API Online na porta '+ API_PORT));
 
 api.get('/status', (req, res) => res.send('<h3>API Online!</h3>'));
 
 
 const filmsController = require('./controller/film.js');
+const userController = require('./controller/user.js');
 const authMiddleware = require('./middlewares/authMiddleware.js');
 
 api.post('/login', authMiddleware.login);
-api.get('/filme',  authMiddleware.authenticate, filmsController.listFilms);
-api.post('/filme', authMiddleware.authenticate, filmsController.addFilm);
-api.put('/filme', authMiddleware.authenticate, filmsController.editFilm);
-api.delete('/filme', authMiddleware.authenticate, filmsController.deleteFilm);
+api.post('/user', userController.userRegister);
+api.get('/filme',  authMiddleware.authentication, filmsController.listFilms);
+api.post('/filme', authMiddleware.authentication, filmsController.addFilm);
+api.put('/filme', authMiddleware.authentication, filmsController.editFilm);
+api.delete('/filme', authMiddleware.authentication, filmsController.deleteFilm);
 

@@ -1,0 +1,62 @@
+[
+    {
+        "name": "O Senhor dos Anéis: A Sociedade do Anel",
+        "releaseData": "2001-12-19",
+        "language": ["pt", "us"],
+        "coverImgUrl": "https://example.com/sociedade-anel.jpg"
+    },
+    {
+        "name": "Vingadores: Ultimato",
+        "releaseData": "2019-04-26",
+        "language": ["pt", "us"],
+        "coverImgUrl": "https://example.com/vingadores-ultimato.jpg"
+    },
+    {
+        "name": "Coringa",
+        "releaseData": "2019-10-04",
+        "language": ["pt", "us"],
+        "coverImgUrl": "https://example.com/coringa.jpg"
+    },
+    {
+        "name": "Matrix",
+        "releaseData": "1999-03-31",
+        "language": ["pt", "us"],
+        "coverImgUrl": "https://example.com/matrix.jpg"
+    },
+    {
+        "name": "Parasita",
+        "releaseData": "2019-05-30",
+        "language": ["pt", "kr"],
+        "coverImgUrl": "https://example.com/parasita.jpg"
+    },
+    {
+        "name": "O Poderoso Chefão",
+        "releaseData": "1972-03-24",
+        "language": ["pt", "us"],
+        "coverImgUrl": "https://example.com/poderoso-chefao.jpg"
+    },
+    {
+        "name": "Interestelar",
+        "releaseData": "2014-11-07",
+        "language": ["pt", "us"],
+        "coverImgUrl": "https://example.com/interestelar.jpg"
+    },
+    {
+        "name": "O Exterminador do Futuro 2: O Julgamento Final",
+        "releaseData": "1991-07-03",
+        "language": ["pt", "us"],
+        "coverImgUrl": "https://example.com/exterminador2.jpg"
+    },
+    {
+        "name": "Homem-Aranha: Sem Volta Para Casa",
+        "releaseData": "2021-12-17",
+        "language": ["pt", "us"],
+        "coverImgUrl": "https://example.com/homem-aranha.jpg"
+    },
+    {
+        "name": "Batman: O Cavaleiro das Trevas",
+        "releaseData": "2008-07-18",
+        "language": ["pt", "us"],
+        "coverImgUrl": "https://example.com/cavaleiro-das-trevas.jpg"
+    }
+]

@@ -31,7 +31,7 @@ exports.login = async (req, res, next) => {
     delete userBD._id;
     delete userBD.password;
 
-    jwt.sign(userBD.toJSON(), secretKey, { expiresIn: '30 * 60000' }, (erro, token) => {
+    jwt.sign(userBD.toJSON(), secretKey, { expiresIn: '30m' }, (erro, token) => {
       if (erro)
         return res.status(500).send({ msg: 'Erro ao gerar JWT!' });
       res.status(200).send({ token: token });
@@ -40,3 +40,4 @@ exports.login = async (req, res, next) => {
     res.status(401).send({ msg: 'Usuário ou password errados!' });
   }
 }
+

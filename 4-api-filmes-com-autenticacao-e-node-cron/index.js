@@ -33,9 +33,9 @@ const userController = require('./controller/user.js');
 const authMiddleware = require('./middlewares/authMiddleware.js');
 
 api.post('/login', authMiddleware.login);
-api.post('/user', userController.userRegister);
+api.post('/new-user', userController.userRegister);
 api.get('/filmes',  authMiddleware.authentication, filmsController.listFilms);
-api.post('/filme', authMiddleware.authentication, filmsController.addFilm);
+api.post('/add-film', authMiddleware.authentication, filmsController.addFilm);
 api.put('/filme', authMiddleware.authentication, filmsController.editFilm);
 api.delete('/filme', authMiddleware.authentication, filmsController.deleteFilm);
 

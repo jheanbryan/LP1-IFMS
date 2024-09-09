@@ -24,7 +24,6 @@ exports.listFilms = async (req, res) => {
 
 exports.addFilm = async (req, res) => {
     const newFilm = req.query;
-    console.log(newFilm)
     if (!newFilm.name) {
         return returnErrorMessage(res, 'Informe o nome do filme!');
 

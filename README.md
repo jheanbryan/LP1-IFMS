@@ -1,2 +1,4 @@
-# LP1-IFMS
- Atividades da disciplina de LP1 do ifms
+# CPW2
+ Disciplina de CPW2 do IFMS
+ <br>
+https://cpw-2.vercel.app

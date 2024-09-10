@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Simulador de Emprestimos</title>
+
+     <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+     <section class="container">
+          <h1>Simule seu Empréstimo!</h1>
+
+          <label for="">Valor a ser emprestado(R$):</label>
+          <input type="number" min="500" placeholder="ex: 900" id="values">
+
+          <label for="">Quantidade de parcelas:</label>
+          <input type="number" id="" min="1" class="portion">
+
+          <h3>Tipo de cliente:</h3>
+
+          <div class="client-type">
+               <input type="radio" id="standard" name="client-type">
+               <label for="standard">Standard</label>
+
+               <input type="radio" id="platinum" name="client-type">
+               <label for="platinum">Platinum</label>
+
+               <input type="radio" id="gold" name="client-type">
+               <label for="gold">Gold</label>
+          </div>
+
+          <button class="btn-calculate">Calcular</button>
+
+          <span class="result"></span>
+     </section>
+</body>
+<script src="src/main.js"></script>
+</html>

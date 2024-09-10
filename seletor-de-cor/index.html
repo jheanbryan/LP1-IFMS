@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Painel RGBA</title>
+</head>
+<body>
+    <!--RGB-->
+    <section class="container">
+        <div id="color-display-rgba"></div>
+
+        <div id="color-controls-rgba">
+    
+            <div id="direct-color-controls">
+                <input type="radio" name="direct-color" id="direct-red">
+                <label for="direct-red">red</label>
+    
+                <input type="radio" name="direct-color" id="direct-green">
+                <label for="direct-green">green</label>
+    
+                <input type="radio" name="direct-color" id="direct-blue">
+                <label for="direct-blue">blue</label>
+            </div>
+    
+            <h2>RGBA</h2>
+    
+            <label for="red">red</label>
+            <input 
+                type="range" 
+                name="red" 
+                id="red"
+                value="0"
+                min="0"
+                max="255">
+    
+            <label for="green">green</label>
+            <input 
+                type="range" 
+                name="green" 
+                id="green"
+                value="0"
+                min="0"
+                max="255">
+    
+            <label for="blue">blue</label>
+            <input 
+                type="range" 
+                name="blue" 
+                id="blue"
+                value="0"
+                min="0"
+                max="255">
+            
+            <label for="alpha">alpha</label>
+            <input 
+                type="range" 
+                name="alpha" 
+                id="alpha"
+                value="1"
+                min="0"
+                max="1"
+                step="0.1">
+        </div>
+    </section>
+
+
+    <!--HSLA-->
+    <section class="container">
+        <div id="color-display-hsla"></div>
+
+        <div id="color-controls-hsla">
+    
+            <!--
+            <div id="direct-color-controls-hsla">
+                <input type="radio" name="direct-color" id="direct-red">
+                <label for="direct-red">red</label>
+    
+                <input type="radio" name="direct-color" id="direct-green">
+                <label for="direct-green">green</label>
+    
+                <input type="radio" name="direct-color" id="direct-blue">
+                <label for="direct-blue">blue</label>
+            </div>
+            -->
+
+            <h2>HSLA</h2>
+    
+            <label for="h">H</label>
+            <input 
+                type="range" 
+                name="h" 
+                id="h"
+                value="0"
+                min="0"
+                max="255">
+    
+            <label for="s">S</label>
+            <input 
+                type="range" 
+                name="s" 
+                id="s"
+                value="0"
+                min="0"
+                max="255">
+    
+            <label for="l">L</label>
+            <input 
+                type="range" 
+                name="l" 
+                id="l"
+                value="0"
+                min="0"
+                max="255">
+            
+            <label for="a">A</label>
+            <input 
+                type="range" 
+                name="a" 
+                id="a"
+                value="1"
+                min="0"
+                max="1"
+                step="0.1">
+        </div>
+    </section>
+
+    <script type="module" src="src/index.js"></script>
+</body>
+</html>

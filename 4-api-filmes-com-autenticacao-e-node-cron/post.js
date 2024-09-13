@@ -6,14 +6,20 @@ const fs = require('fs').promises;
 const fetch = require('node-fetch');
 
 const event = new EventEmitter();
-const period = '*/2 * * * * *' //'*/1 * * * *';
+const period = '*/2 * * * *';
 const token = process.env.TOKEN;
 let i = 0;
 console.log(process.env.TOKEN)
 
 const readJson = async () => {
-    const data = await fs.readFile('./items.json', 'utf8');
-    return JSON.parse(data);
+    try {
+        const data = await fs.readFile('./items.json', 'utf8');
+        return JSON.parse(data);
+
+    } catch (error) {
+        console.error('[ERRO]: Erro ao ler JSON')
+    }
+
 };
 
 const postInApi = async (name, releaseData, language, coverImgUrl) => {
@@ -62,12 +68,10 @@ const successPost = (filmName) => {
     return `[SUCESSO]: Filme ${filmName} cadastrado com sucesso!`;
 };
 
-// Listener para o evento 'acessoNegado'
 event.on('acessoNegado', (message) => {
-    console.error(message); // Usar console.error para erros
+    console.error(message); 
 });
 
-// Listener para o evento 'filmeCadastrado'
 event.on('filmeCadastrado', (message) => {
     console.log(message);
 });
@@ -75,8 +79,8 @@ event.on('filmeCadastrado', (message) => {
 
 cron.schedule(period, async () => {
     console.log('Iniciando...');
-    const tokenValid = await tokenIsValid();
     const filmsList = await readJson();
+    const tokenValid = await tokenIsValid();
 
     if (tokenValid == false) {
         console.log('Token inválido.');
